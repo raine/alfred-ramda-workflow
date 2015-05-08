@@ -1,7 +1,5 @@
 # encoding: utf-8
 
-# TODO: remove R. if given in query
-
 import sys
 import re
 from workflow import Workflow, ICON_WEB, web
@@ -36,7 +34,11 @@ def main(wf):
     functions = wf.cached_data('functions', get_functions, max_age=1)
 
     if len(wf.args) and wf.args[0]:
-        query = space_to_underscore(wf.args[0])
+        query = space_to_underscore(re.sub(r'^R\.', u'', wf.args[0]))
+    else:
+        query = None
+
+    if query:
         functions = wf.filter(query, functions, key=search_key_for_function,
                 min_score=20, match_on=MATCH_STARTSWITH | MATCH_SUBSTRING)
 
