@@ -23,17 +23,21 @@ def get_functions():
     r.raise_for_status()
     return r.json()
 
+def space_to_underscore(s):
+    return re.sub(r' ', u'_', s)
+
 def search_key_for_function(function):
     elements = []
     elements.append(function['name'])
-    elements.append(function['sig'])
+    elements.append(space_to_underscore(function['sig']))
     return u' '.join(elements)
 
 def main(wf):
     functions = wf.cached_data('functions', get_functions, max_age=1)
 
     if len(wf.args) and wf.args[0]:
-        functions = wf.filter(wf.args[0], functions, key=search_key_for_function,
+        query = space_to_underscore(wf.args[0])
+        functions = wf.filter(query, functions, key=search_key_for_function,
                 min_score=20, match_on=MATCH_STARTSWITH | MATCH_SUBSTRING)
 
     for f in functions:
