@@ -31,7 +31,7 @@ def search_key_for_function(function):
     return u' '.join(elements)
 
 def main(wf):
-    functions = wf.cached_data('functions', get_functions, max_age=1)
+    functions = wf.cached_data('functions', get_functions, max_age=3600)
 
     if len(wf.args) and wf.args[0]:
         query = space_to_underscore(re.sub(r'^R\.', u'', wf.args[0]))
