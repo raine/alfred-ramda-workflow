@@ -13,6 +13,7 @@ def unicodeize_arrow(s):
 
 def format_title(function):
     name = function['name']
+    if not function['sig']: return name
     sig  = unicodeize_arrow(function['sig'])
     return ' '.join([name, '::', sig])
 
