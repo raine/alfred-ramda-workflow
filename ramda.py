@@ -5,7 +5,7 @@ import re
 from workflow import Workflow, ICON_WEB, web
 from workflow import (MATCH_ALL, MATCH_ALLCHARS, MATCH_ATOM, MATCH_CAPITALS, MATCH_INITIALS, MATCH_INITIALS_CONTAIN, MATCH_INITIALS_STARTSWITH, MATCH_STARTSWITH, MATCH_SUBSTRING)
 
-LATEST_JSON = 'https://cdn.rawgit.com/raine/ramda-json-docs/master/latest.json'
+LATEST_JSON = 'http://raine.github.io/ramda-json-docs/latest.json'
 DOCS_BASE_URL = 'http://ramdajs.com/docs/'
 
 def unicodeize_arrow(s):
